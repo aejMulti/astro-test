@@ -9,7 +9,7 @@ const mySections = [
     {
       id: "1",
       label: "item 1",
-      amount: 5,
+      amount: "5",
       mod: 1,
       comment: "hi",
       sectionid: "1",
@@ -17,7 +17,7 @@ const mySections = [
     {
       id: "2",
       label: "item 2",
-      amount: 5,
+      amount: "5",
       mod: 1,
       comment: "hi",
       sectionid: "2",
@@ -25,7 +25,7 @@ const mySections = [
     {
       id: "3",
       label: "item 3",
-      amount: 5,
+      amount: "5",
       mod: 1,
       comment: "hi",
       sectionid: "2",
@@ -33,7 +33,7 @@ const mySections = [
     {
       id: "4",
       label: "item 4",
-      amount: 5,
+      amount: "5",
       mod: 1,
       comment: "hi",
       sectionid: "3",
@@ -41,7 +41,7 @@ const mySections = [
     {
       id: "5",
       label: "item 4",
-      amount: 5,
+      amount: "5",
       mod: 1,
       comment: "hi",
       sectionid: "3",

@@ -24,7 +24,7 @@ const SectionList = () => {
 
     const addNewItem = (label: string, amount: number) => {
       const addedOption: any = {
-        value: nanoid(),
+        id: nanoid(),
         label: label,
         amount: amount,
         sectionid: sectionid,
@@ -61,8 +61,7 @@ const SectionList = () => {
       return sum;
     };
     const calcTotal = items.reduce((sum, { amount }) => {
-      console.log(Number(sum) + Number(amount));
-      return format(Number(sum) + Number(amount));
+      return Number(sum) + Number(amount);
     }, 0);
     console.log(calcTotal);
 
@@ -74,7 +73,7 @@ const SectionList = () => {
     return (
       <div>
         <div className="bg-slate-400 font-bold text-xl">
-          {section.title + calcTotal}
+          {section.title + calcTotal.toString().replace("-", "+")}
         </div>
         <ItemList sectionid={section.id} />
       </div>
