@@ -17,11 +17,7 @@ const OptionItem: React.FC<{
     if (optionValue === "") {
       setOptionValue(optionValue);
     } else {
-      updateOption(
-        id,
-        valueKey === "amount" ? Number(optionValue) : optionValue,
-        valueKey
-      );
+      updateOption(id, optionValue, valueKey);
     }
 
     setEditMode(false);
@@ -52,8 +48,8 @@ const OptionItem: React.FC<{
   return (
     <div
       className="d-flex align-items-center todo-item p-1"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      // onMouseEnter={() => setIsHovered(true)}
+      // onMouseLeave={() => setIsHovered(false)}
     >
       {editMode === false ? (
         <div className="todo-value ml-2" onClick={() => setEditMode(true)}>
@@ -86,7 +82,7 @@ const OptionItem: React.FC<{
 };
 
 const AddOptionItem: React.FC<{
-  addOption: (value: string, amount: number) => void;
+  addOption: (value: string, amount: string) => void;
 }> = ({ addOption }) => {
   const [optionValue, setOptionValue] = useState<any>("");
   const [optionAmount, setOptionAmount] = useState<any>("");
@@ -94,7 +90,9 @@ const AddOptionItem: React.FC<{
   const saveChange = (e) => {
     e.preventDefault();
     if (optionValue !== "") {
-      addOption(optionValue, Number(optionAmount));
+      if (optionAmount === "") {
+        addOption(optionValue, "0");
+      } else addOption(optionValue, optionAmount);
       setOptionValue("");
       setOptionAmount("");
     } else {
@@ -163,25 +161,35 @@ export const OptionPicker: React.FC<{
   addNewOption: any;
   deleteOption: any;
 }> = ({ options, updateOption, addNewOption, deleteOption }) => {
+  const handleClick = () => {
+    for (let i = 0; i < 1000; i++) {
+      addNewOption(`test${i}`, "1");
+    }
+  };
   return (
     <div>
       <AddOptionItem addOption={addNewOption} />
-      {options.map((item) => (
+      <button onClick={handleClick}>test!</button>
+      {options.map((item, i) => (
         <div className="flex">
-          <OptionItem
-            option={item.label}
-            updateOption={updateOption}
-            deleteOption={deleteOption}
-            id={item.id}
-            valueKey="label"
-          />
-          <OptionItem
-            option={item.amount}
-            updateOption={updateOption}
-            deleteOption={deleteOption}
-            id={item.id}
-            valueKey="amount"
-          />
+          {i < 3 && (
+            <>
+              <OptionItem
+                option={item.label}
+                updateOption={updateOption}
+                deleteOption={deleteOption}
+                id={item.id}
+                valueKey="label"
+              />
+              <OptionItem
+                option={item.amount}
+                updateOption={updateOption}
+                deleteOption={deleteOption}
+                id={item.id}
+                valueKey="amount"
+              />
+            </>
+          )}
         </div>
       ))}
     </div>
@@ -195,8 +203,6 @@ const OptionPickerDemo: React.FC = () => {
     { value: "3", label: "Alt", amount: 3 },
     { value: "4", label: "Alt", amount: 4 },
   ]);
-
-  console.log(options);
 
   const updateOption = (value: string, label: string) => {
     let _optionToUpdate = options.find((option) => option.value === value);
