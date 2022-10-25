@@ -68,6 +68,9 @@ export const setAllItems = (item) => {
 };
 
 export const allSections = atom(mySections)
+export const updateSections = (sections) => {
+	allSections.set(sections);
+};
 export const setAllSections = (section) => {
 	allSections.set([...allSections.get(), section]);
 };
