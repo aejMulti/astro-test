@@ -1,0 +1,17 @@
+@charset "UTF-8";
+ 
+@import'./fonts.scss';
+@import'./variables.scss';
+ 
+ body {
+   margin: $spacing-0;
+   background: hsl($colour-dark-hue $colour-dark-saturation $colour-dark-luminance);
+   font-family: Roboto;
+   text-align: center;
+   background-color: aquamarine;
+ }
+ 
+ h1 {
+   font-size: 3.815rem;
+   margin-bottom: $spacing-12;
+ }

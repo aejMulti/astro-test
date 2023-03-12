@@ -63,9 +63,18 @@ export const cartItems = map<Record<string, CartItem>>({});
 export const allItems = atom(myItems)
 
 export const setAllItems = (item) => {
-	console.log(item)
 	allItems.set([...allItems.get(), item]);
 };
+
+export const updateAllItems = (item) => {
+  const data = allItems.get()
+  const newState = data.map(obj => {
+    if (obj.id === item.id) {
+      return {item};
+    }
+  })
+  allItems.set(newState)
+} 
 
 export const allSections = atom(mySections)
 export const updateSections = (sections) => {
@@ -87,3 +96,4 @@ export const setAllSections = (section) => {
 	
 // 	return format(sum + amount);
 //   }, 0);
+

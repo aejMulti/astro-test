@@ -53,7 +53,7 @@ const SectionList = () => {
       const updatedItems = items.map((option) => {
         return option.id === id ? _optionToUpdate : option;
       });
-      setAllItems(updatedItems);
+      allItems.set(updatedItems);
     };
 
     const addNewItem = (label: string, amount: number) => {
